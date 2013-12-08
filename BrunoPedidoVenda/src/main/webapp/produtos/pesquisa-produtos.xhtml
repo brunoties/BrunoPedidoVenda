@@ -1,0 +1,97 @@
+<ui:composition template="/WEB-INF/template/layout-padrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Pesquisa Produtos</ui:define>
+
+	<ui:define name="corpo">
+		<h:form>
+
+			<h1>Pesquisa Produtos</h1>
+
+			<p:toolbar style="margin-top: 20px">
+
+				<p:toolbarGroup>
+
+					<p:commandButton id="btnPesquisar" value="Pesquisar" />
+
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+
+					<p:button value="Novo" outcome="/produtos/cadastro-produto" />
+
+				</p:toolbarGroup>
+
+			</p:toolbar>
+
+			<p:panelGrid id="painel" columns="2" columnClasses="rotulo, campo"
+				style=" width: 100%; 
+					margin-top: 20px">
+
+				<p:outputLabel value="SKU" for="sku" />
+				<p:inputText id="sku" size="20" />
+
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" size="60" />
+
+			</p:panelGrid>
+			
+			<p:dataTable id="produtosTable" value="#{pesquisaProdutosBean.produtosFiltrados}"
+				style="margin-top: 20px"
+				var="produto"
+				rows="20"
+				rowsPerPageTemplate="10, 20, 30"
+				paginator="true"
+				paginatorAlwaysVisible="false"
+				paginatorPosition="bottom"
+				emptyMessage="Nenhum Produto Encontrato">
+			
+				<p:column headerText="SKU" style="text-align: center"
+					width="100">
+				
+					<h:outputText value="123" />	
+					
+				</p:column>
+				
+				<p:column headerText="Nome">
+				
+					<h:outputText value="Bala Juquinha" />
+				
+				</p:column>
+				
+				<p:column headerText="Categoria" width="250">
+				
+					<h:outputText value="Doces - Balas e Chicletes" />
+				
+				</p:column>
+				
+				<p:column headerText="Valor Unitário" style="text-align: right" width="120">
+				
+					<h:outputText value="R$1,20" />
+				
+				</p:column>
+				
+				<p:column headerText="Estoque" style="text-align: center" width="100">
+				
+					<h:outputText value="99" />
+				
+				</p:column>
+				
+				<p:column headerText="Ações" style="text-align: center" width="100">
+				
+					<p:button icon="ui-icon-pencil" title="Editar" />
+					
+					<p:commandButton icon="ui-icon-trash" title="Excluir" />
+				
+				</p:column>
+			
+			</p:dataTable>
+			
+		</h:form>
+	</ui:define>
+
+</ui:composition>
